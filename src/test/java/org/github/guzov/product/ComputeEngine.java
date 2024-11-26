@@ -1,10 +1,102 @@
 package org.github.guzov.product;
 
-public class ComputeEngine {
-    private String operationSystem = "Free: Debian, CentOS, CoreOS, Ubuntu or BYOL (Bring Your Own License)";
-    private String machineType = "n1-standard-8";
-    private String region = "Netherlands (europe-west4)";
-    private String localSSD = "2x375 GB";
-    private String committedTerm = "1 year";
-    private String gpuModel = "NVIDIA TESLA P100";
+public class ComputeEngine extends AbstractProduct {
+    private final String PRODUCT_NAME;
+    private String operationSystem;
+    private String machineType;
+    private String region;
+    private String localSSD;
+    private String committedTerm;
+    private String gpuModel;
+    private int instancesNumber;
+    private int gpuNumber;
+
+    public ComputeEngine () {
+        super();
+        PRODUCT_NAME = "Compute Engine";
+    }
+
+    public ComputeEngine (String operationSystem, String machineType, String region, String localSSD, String committedTerm,
+                   String gpuModel, int instancesNumber, int gpuNumber)
+    {
+        super();
+        PRODUCT_NAME = "Compute Engine";
+        this.operationSystem = operationSystem;
+        this.machineType = machineType;
+        this.region = region;
+        this.localSSD = localSSD;
+        this. committedTerm = committedTerm;
+        this. gpuModel = gpuModel;
+        this.instancesNumber = instancesNumber;
+        this.gpuNumber = gpuNumber;
+    }
+
+    public int getGpuNumber() {
+        return gpuNumber;
+    }
+
+    public void setGpuNumber(int gpuNumber) {
+        this.gpuNumber = gpuNumber;
+    }
+
+    public int getInstancesNumber() {
+        return instancesNumber;
+    }
+
+    public void setInstancesNumber(int instancesNumber) {
+        this.instancesNumber = instancesNumber;
+    }
+
+    @Override
+    public String getProductName() {
+        return PRODUCT_NAME;
+    }
+
+    public String getOperationSystem() {
+        return operationSystem;
+    }
+
+    public void setOperationSystem(String operationSystem) {
+        this.operationSystem = operationSystem;
+    }
+
+    public String getMachineType() {
+        return machineType;
+    }
+
+    public void setMachineType(String machineType) {
+        this.machineType = machineType;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getLocalSSD() {
+        return localSSD;
+    }
+
+    public void setLocalSSD(String localSSD) {
+        this.localSSD = localSSD;
+    }
+
+    public String getCommittedTerm() {
+        return committedTerm;
+    }
+
+    public void setCommittedTerm(String committedTerm) {
+        this.committedTerm = committedTerm;
+    }
+
+    public String getGpuModel() {
+        return gpuModel;
+    }
+
+    public void setGpuModel(String gpuModel) {
+        this.gpuModel = gpuModel;
+    }
 }

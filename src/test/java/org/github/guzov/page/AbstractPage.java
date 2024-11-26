@@ -10,7 +10,8 @@ public abstract class AbstractPage {
     protected JavascriptExecutor js;
     protected String originalWindow;
 
-    protected AbstractPage (WebDriver driver) {
+    protected AbstractPage (WebDriver driver)
+    {
         this.driver = driver;
         this.js =  (JavascriptExecutor) driver;
         originalWindow = driver.getWindowHandle();

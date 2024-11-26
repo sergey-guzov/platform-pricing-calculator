@@ -17,24 +17,34 @@ import java.util.logging.Logger;
 public class GoogleCloudSearchResultsPage extends AbstractPage {
 
     private static final Logger logger = Logger.getLogger(GoogleCloudSearchResultsPage.class.getName());
+
     @FindBys(@FindBy(xpath = "//div[@class='gs-title']/a[@class='gs-title']"))
     private List<WebElement> searchResults;
+
     private final By SEARCH_RESULTS_BOX = By.xpath("//*[contains(@class, 'gsc-results gsc-webResult')]");
+    private String searchItem;
 
+    public GoogleCloudSearchResultsPage (WebDriver driver, String searchItem)
+    {
+        super(driver);
+        this.searchItem = searchItem;
+    }
 
-    public GoogleCloudSearchResultsPage (WebDriver driver) {super(driver);}
-
-    public GoogleCloudPricingCalculatorPage selectResult (String searchItem) {
+    public GoogleCloudPricingCalculatorPage selectResult ()
+    {
         WebElement necessaryItem = null;
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(SEARCH_RESULTS_BOX));
-        for (WebElement searchResult: searchResults) {
-            if (searchResult.getText().equals(searchItem)) {
+        for (WebElement searchResult: searchResults)
+        {
+            if (searchResult.getText().equals(searchItem))
+            {
                 necessaryItem = searchResult;
                 break;
             }
         }
-        if (necessaryItem == null) {
+        if (necessaryItem == null)
+        {
             throw new RuntimeException("No suitable result");
         } else necessaryItem.click();
         return new GoogleCloudPricingCalculatorPage(driver);
