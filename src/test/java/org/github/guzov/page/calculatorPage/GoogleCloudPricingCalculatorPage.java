@@ -104,6 +104,12 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         driver.findElement(By.xpath("//span[text()='" + requiredOption + "']/../..")).click();
     }
 
+    protected void activateRadioButton (WebElement radioButtonArea, String requiredOption)
+    {
+        scrollPageTo(radioButtonArea);
+        driver.findElement(By.xpath("//label[text()='"+ requiredOption + "']/..")).click();
+    }
+
     private ComputeEngineCalculatorPage getCorrespondingCalculatorPage (AbstractProduct product)
     {
         switch (selectedProductTitle.getText())

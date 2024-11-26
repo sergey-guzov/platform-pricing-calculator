@@ -19,8 +19,8 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     @FindBy(xpath = "//span[text() = 'Operating System / Software']/../../..")
     WebElement operationSystemDropBox;
 
-    @FindBy(xpath = "//label[text()='Regular']/..")
-    WebElement provisioningModelRadioButton;
+    @FindBy(xpath = "//div[text()='Provisioning Model']/../..")
+    WebElement provisioningModelArea;
 
     @FindBy(xpath = "//span[text() = 'Machine type']/../../..")
     WebElement machineTypeDropBox;
@@ -40,8 +40,8 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     @FindBy(xpath = "//span[text() = 'Region']/../../..")
     WebElement serverRegionDropBox;
 
-    @FindBy(xpath = "//label[text()='1 year']/..")
-    WebElement usingPeriodRadioButton;
+    @FindBy(xpath = "//div[text()='Committed use discount options']/../..")
+    WebElement committedPeriodArea;
 
     public ComputeEngineCalculatorPage (WebDriver driver, ComputeEngine computeEngine)
     {
@@ -67,8 +67,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.invisibilityOf(calculationError));
-        scrollPageTo(provisioningModelRadioButton);
-        provisioningModelRadioButton.click();
+        activateRadioButton(provisioningModelArea,computeEngine.getProvisioningModel());
         return this;
     }
 
@@ -107,10 +106,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
 
     public ComputeEngineCalculatorPage selectUsingPeriod ()
     {
-        scrollPageTo(usingPeriodRadioButton);
-        usingPeriodRadioButton.click();
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.attributeToBe(usingPeriodRadioButton, "checked", ""));
+        activateRadioButton(committedPeriodArea,computeEngine.getCommittedTerm());
         return this;
     }
 

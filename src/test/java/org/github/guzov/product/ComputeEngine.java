@@ -3,6 +3,7 @@ package org.github.guzov.product;
 public class ComputeEngine extends AbstractProduct {
     private final String PRODUCT_NAME;
     private String operationSystem;
+    private String provisioningModel;
     private String machineType;
     private String region;
     private String localSSD;
@@ -16,12 +17,13 @@ public class ComputeEngine extends AbstractProduct {
         PRODUCT_NAME = "Compute Engine";
     }
 
-    public ComputeEngine (String operationSystem, String machineType, String region, String localSSD, String committedTerm,
+    public ComputeEngine (String operationSystem, String provisioningModel, String machineType, String region, String localSSD, String committedTerm,
                    String gpuModel, int instancesNumber, int gpuNumber)
     {
         super();
         PRODUCT_NAME = "Compute Engine";
         this.operationSystem = operationSystem;
+        this.provisioningModel = provisioningModel;
         this.machineType = machineType;
         this.region = region;
         this.localSSD = localSSD;
@@ -30,6 +32,10 @@ public class ComputeEngine extends AbstractProduct {
         this.instancesNumber = instancesNumber;
         this.gpuNumber = gpuNumber;
     }
+
+    public String getProvisioningModel() {return provisioningModel;}
+
+    public void setProvisioningModel(String provisioningModel) {this.provisioningModel = provisioningModel;}
 
     public int getGpuNumber() {
         return gpuNumber;
