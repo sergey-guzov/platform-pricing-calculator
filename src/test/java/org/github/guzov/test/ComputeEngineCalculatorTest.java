@@ -4,23 +4,17 @@ import org.github.guzov.page.GoogleCloudHomePage;
 import org.github.guzov.page.GoogleCloudCostEstimateSummaryPage;
 import org.github.guzov.product.ComputeEngine;
 import org.github.guzov.service.ComputeEngineCreator;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ComputeEngineCalculatorTest {
-    private WebDriver driver;
+public class ComputeEngineCalculatorTest extends CommonCondition {
     private GoogleCloudCostEstimateSummaryPage summaryPage;
     private ComputeEngine computeEngine;
 
     @BeforeClass(alwaysRun = true)
-    public void instanceCreation()
+    public void createSummaryPage()
     {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
         computeEngine = ComputeEngineCreator.withSettingsFromProperty();
         summaryPage = new GoogleCloudHomePage(driver)
                 .openPage()
@@ -30,7 +24,6 @@ public class ComputeEngineCalculatorTest {
                 .setProductParameters()
                 .openSummaryPage();
     }
-
 
     @Test(description = "operation system test")
     public void operationSystemTest()
@@ -74,10 +67,4 @@ public class ComputeEngineCalculatorTest {
                 .contains(computeEngine.getMachineType()), "Machine type match with selected");
     }
 
-    @AfterClass(alwaysRun = true)
-    public void instanceTierDown ()
-    {
-        driver.quit();
-        driver = null;
-    }
 }
