@@ -52,7 +52,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     public ComputeEngineCalculatorPage setNumberOfInstances()
     {
         numberOfInstancesField.clear();
-        numberOfInstancesField.sendKeys("value", String.valueOf(computeEngine.getInstancesNumber()));
+        numberOfInstancesField.sendKeys("value", computeEngine.getInstancesNumber());
         return this;
     }
 
@@ -88,9 +88,9 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
         gpuTypeDropBox.click();
         selectOptionFromDropBox(gpuTypeDropBox, computeEngine.getGpuModel());
         gpuNumberDropBox.click();
-        selectOptionFromDropBox(gpuNumberDropBox, String.valueOf(computeEngine.getGpuNumber()));
+        selectOptionFromDropBox(gpuNumberDropBox, computeEngine.getGpuNumber());
         localSsdDropBox.click();
-        selectOptionFromDropBox(localSsdDropBox, String.valueOf(computeEngine.getLocalSSD()));
+        selectOptionFromDropBox(localSsdDropBox, computeEngine.getLocalSSD());
         return this;
     }
 
@@ -100,7 +100,9 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
         serverRegionDropBox.click();
         selectOptionFromDropBox(serverRegionDropBox, computeEngine.getRegion());
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text() = 'Region']/../../..//span[text()='Netherlands (europe-west4)']")));
+                .until(ExpectedConditions.
+                        visibilityOfElementLocated(By.
+                                xpath("//span[text() = 'Region']/../../..//span[text()='" + computeEngine.getRegion() + "']")));
         return this;
     }
 

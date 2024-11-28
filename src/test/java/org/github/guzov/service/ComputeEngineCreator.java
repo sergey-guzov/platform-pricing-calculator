@@ -4,20 +4,26 @@ import org.github.guzov.product.ComputeEngine;
 
 public class ComputeEngineCreator {
 
-    private static String operationSystem = "Paid: Ubuntu Pro";
-    private static String provisioningModel = "Regular";
-    private static String machineType = "n1-standard-8";
-    private static String region = "Netherlands (europe-west4)";
-    private static String localSSD = "2x375 GB";
-    private static String committedTerm = "1 year";
-    private static String gpuModel = "NVIDIA TESLA P100";
-    private static int instancesNumber = 4;
-    private static int gpuNumber = 1;
+    private static final String OPERATION_SYSTEM = "testdata.operation.system";
+    private static final String PROVISIONING_MODEL = "testdata.provisioning.model";
+    private static final String MACHINE_TYPE = "testdata.machine.type";
+    private static final String REGION = "testdata.region";
+    private static final String LOCAL_SSD = "testdata.local.ssd";
+    private static final String COMMITTED_TERM = "testdata.committed.term";
+    private static final String GPU_MODEL = "testdata.gpu.model";
+    private static final String INSTANCE_NUMBER = "testdata.instance.number";
+    private static final String GPU_NUMBER = "testdata.gpu.number";
 
     public static ComputeEngine withSettingsFromProperty()
     {
-        return new ComputeEngine(operationSystem,provisioningModel,machineType,region,localSSD,
-                committedTerm,gpuModel,instancesNumber,gpuNumber);
+        return new ComputeEngine(TestDataReader.getTestData(OPERATION_SYSTEM),
+                TestDataReader.getTestData(PROVISIONING_MODEL),
+                TestDataReader.getTestData(MACHINE_TYPE),
+                TestDataReader.getTestData(REGION),
+                TestDataReader.getTestData(LOCAL_SSD),
+                TestDataReader.getTestData(COMMITTED_TERM),
+                TestDataReader.getTestData(GPU_MODEL),
+                TestDataReader.getTestData(INSTANCE_NUMBER),
+                TestDataReader.getTestData(GPU_NUMBER));
     }
-
 }

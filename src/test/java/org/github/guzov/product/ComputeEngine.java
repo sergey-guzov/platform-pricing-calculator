@@ -9,8 +9,8 @@ public class ComputeEngine extends AbstractProduct {
     private String localSSD;
     private String committedTerm;
     private String gpuModel;
-    private int instancesNumber;
-    private int gpuNumber;
+    private String instancesNumber;
+    private String gpuNumber;
 
     public ComputeEngine () {
         super();
@@ -18,7 +18,7 @@ public class ComputeEngine extends AbstractProduct {
     }
 
     public ComputeEngine (String operationSystem, String provisioningModel, String machineType, String region, String localSSD, String committedTerm,
-                   String gpuModel, int instancesNumber, int gpuNumber)
+                   String gpuModel, String instancesNumber, String gpuNumber)
     {
         super();
         PRODUCT_NAME = "Compute Engine";
@@ -37,19 +37,19 @@ public class ComputeEngine extends AbstractProduct {
 
     public void setProvisioningModel(String provisioningModel) {this.provisioningModel = provisioningModel;}
 
-    public int getGpuNumber() {
+    public String getGpuNumber() {
         return gpuNumber;
     }
 
-    public void setGpuNumber(int gpuNumber) {
+    public void setGpuNumber(String gpuNumber) {
         this.gpuNumber = gpuNumber;
     }
 
-    public int getInstancesNumber() {
+    public String getInstancesNumber() {
         return instancesNumber;
     }
 
-    public void setInstancesNumber(int instancesNumber) {
+    public void setInstancesNumber(String instancesNumber) {
         this.instancesNumber = instancesNumber;
     }
 
