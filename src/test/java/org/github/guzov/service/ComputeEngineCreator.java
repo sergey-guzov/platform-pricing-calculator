@@ -14,10 +14,6 @@ public class ComputeEngineCreator {
     private static int instancesNumber = 4;
     private static int gpuNumber = 1;
 
-
-
-
-
     public static ComputeEngine withSettingsFromProperty()
     {
         return new ComputeEngine(operationSystem,provisioningModel,machineType,region,localSSD,
