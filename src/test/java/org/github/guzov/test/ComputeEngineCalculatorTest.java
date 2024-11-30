@@ -26,14 +26,14 @@ public class ComputeEngineCalculatorTest extends CommonCondition {
                 .openSummaryPage();
     }
 
-    @Test(description = "operation system test")
+    @Test(description = "Operation system test")
     public void operationSystemTest()
     {
         Assert.assertTrue(summaryPage.getValueOf(Characteristics.OPERATION_SYSTEM.getTitle())
                 .equals(computeEngine.getOperationSystem()), "Operation System doesn't match with selected");
     }
 
-    @Test(description = "committed term test")
+    @Test(description = "Committed term test")
     public void committedTermTest()
     {
         Assert.assertTrue(summaryPage.getValueOf(Characteristics.COMMITTED_TERM.getTitle())
