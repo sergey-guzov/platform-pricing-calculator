@@ -9,10 +9,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class GoogleCloudHomePage extends AbstractPage {
 
     private final String HOME_PAGE_URL = "https://cloud.google.com";
+    private final Logger LOGGER = LogManager.getLogger();
+
     private String language = "/?hl=ru";
 
     @FindBy(xpath = "//input[@aria-label='Search']")
@@ -28,6 +32,7 @@ public class GoogleCloudHomePage extends AbstractPage {
     public GoogleCloudHomePage openPage ()
     {
         driver.get(HOME_PAGE_URL+language);
+        LOGGER.info("Homepage `{}` is opened", HOME_PAGE_URL);
         closeCookieNotification();
         return this;
     }

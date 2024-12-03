@@ -1,5 +1,7 @@
 package org.github.guzov.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.github.guzov.page.calculatorPage.GoogleCloudPricingCalculatorPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.logging.Logger;
 
 
 public class GoogleCloudSearchResultsPage extends AbstractPage {
 
-    private static final Logger logger = Logger.getLogger(GoogleCloudSearchResultsPage.class.getName());
+    private final Logger LOGGER = LogManager.getLogger();
 
     @FindBys(@FindBy(xpath = "//div[@class='gs-title']/a[@class='gs-title']"))
     private List<WebElement> searchResults;
@@ -47,6 +48,7 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
         {
             throw new RuntimeException("No suitable result");
         } else necessaryItem.click();
+        LOGGER.info("Result `{}` was found and clicked", searchItem);
         return new GoogleCloudPricingCalculatorPage(driver);
     }
 

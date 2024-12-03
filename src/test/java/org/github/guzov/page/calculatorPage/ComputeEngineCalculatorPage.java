@@ -1,5 +1,7 @@
 package org.github.guzov.page.calculatorPage;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.github.guzov.product.ComputeEngine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,7 @@ import java.time.Duration;
 
 public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPage {
     private ComputeEngine computeEngine;
+    private final Logger LOGGER = LogManager.getLogger();
 
     @FindBy(xpath = "//div[@class='QiFlid']//input")
     WebElement numberOfInstancesField;
@@ -53,6 +56,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     {
         numberOfInstancesField.clear();
         numberOfInstancesField.sendKeys("value", computeEngine.getInstancesNumber());
+        LOGGER.info("Set number of instances - `{}`", computeEngine.getInstancesNumber());
         return this;
     }
 
@@ -60,6 +64,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     {
         operationSystemDropBox.click();
         selectOptionFromDropBox(operationSystemDropBox, computeEngine.getOperationSystem());
+        LOGGER.info("Select operation system - `{}`", computeEngine.getOperationSystem());
         return this;
     }
 
@@ -68,6 +73,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.invisibilityOf(calculationError));
         activateRadioButton(provisioningModelArea,computeEngine.getProvisioningModel());
+        LOGGER.info("Select provisioning model - `{}`", computeEngine.getProvisioningModel());
         return this;
     }
 
@@ -75,6 +81,7 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
     {
         machineTypeDropBox.click();
         selectOptionFromDropBox(machineTypeDropBox, computeEngine.getMachineType());
+        LOGGER.info("Select machine type - `{}`", computeEngine.getMachineType());
         return this;
     }
 
@@ -91,6 +98,9 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
         selectOptionFromDropBox(gpuNumberDropBox, computeEngine.getGpuNumber());
         localSsdDropBox.click();
         selectOptionFromDropBox(localSsdDropBox, computeEngine.getLocalSSD());
+        LOGGER.info("Select GPY type - `{}`", computeEngine.getGpuModel());
+        LOGGER.info("Set GPY number - `{}`", computeEngine.getGpuNumber());
+        LOGGER.info("Set SSD number - `{}`", computeEngine.getLocalSSD());
         return this;
     }
 
@@ -103,12 +113,14 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
                 .until(ExpectedConditions.
                         visibilityOfElementLocated(By.
                                 xpath("//span[text() = 'Region']/../../..//span[text()='" + computeEngine.getRegion() + "']")));
+        LOGGER.info("Select region - `{}`", computeEngine.getRegion());
         return this;
     }
 
     public ComputeEngineCalculatorPage selectUsingPeriod ()
     {
         activateRadioButton(committedPeriodArea,computeEngine.getCommittedTerm());
+        LOGGER.info("Select using period - `{}`", computeEngine.getCommittedTerm());
         return this;
     }
 

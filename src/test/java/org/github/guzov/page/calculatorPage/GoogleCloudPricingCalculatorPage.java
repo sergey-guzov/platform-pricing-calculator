@@ -1,5 +1,7 @@
 package org.github.guzov.page.calculatorPage;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.github.guzov.page.AbstractPage;
 import org.github.guzov.page.GoogleCloudCostEstimateSummaryPage;
 import org.github.guzov.product.AbstractProduct;
@@ -15,10 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class GoogleCloudPricingCalculatorPage extends AbstractPage {
-    private static final Logger logger = Logger.getLogger(GoogleCloudPricingCalculatorPage.class.getName());
+    private final Logger LOGGER = LogManager.getLogger();
 
     @FindBy(xpath = "//div[@class='Gxwdcd']//div[@class='VfPpkd-dgl2Hf-ppHlrf-sM5MNb']")
     WebElement addToEstimateButton;
@@ -117,6 +118,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
             case "Compute Engine":
             {
                 ComputeEngine computeEngine = (ComputeEngine) product;
+                LOGGER.info("Product `{}` was selected to estimate", product.getProductName());
                 return new ComputeEngineCalculatorPage(driver, computeEngine);
             }
             default:

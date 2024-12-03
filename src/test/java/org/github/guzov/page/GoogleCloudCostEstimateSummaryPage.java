@@ -1,6 +1,5 @@
 package org.github.guzov.page;
 
-import org.github.guzov.page.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
