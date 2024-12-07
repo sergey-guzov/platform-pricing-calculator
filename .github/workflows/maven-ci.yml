@@ -22,4 +22,4 @@ jobs:
           cache: maven
 
       - name: Run Smoke Test
-        run: mvn clean test -Dbrowser=chrome -Denvironment=dev -DxmlFilePath=src\test\resources\testing-smoke.xml
+        run: mvn clean test -Dbrowser=chrome -Denvironment=dev -DxmlFilePath="src\test\resources\testing-smoke.xml"
