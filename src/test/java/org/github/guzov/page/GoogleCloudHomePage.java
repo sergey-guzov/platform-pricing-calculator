@@ -50,7 +50,7 @@ public class GoogleCloudHomePage extends AbstractPage {
             cookiesAcceptButton.click();
             new WebDriverWait(driver, Duration.ofSeconds(10)).
                     until(ExpectedConditions.invisibilityOfElementLocated(cookiesPolicyPopUp));
-        } catch (NoSuchElementException elementException) {
+        } catch (NoSuchElementException | TimeoutException elementException) {
             LOGGER.info("Cookies Notification is not shown");
         }
     }
