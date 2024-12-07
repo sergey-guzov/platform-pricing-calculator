@@ -1,9 +1,6 @@
 package org.github.guzov.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,11 +44,15 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     private void closeCookieNotification ()
     {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).
-                until(ExpectedConditions.presenceOfElementLocated(cookiesPolicyPopUp));
-        cookiesAcceptButton.click();
-        new WebDriverWait(driver, Duration.ofSeconds(10)).
-                until(ExpectedConditions.invisibilityOfElementLocated(cookiesPolicyPopUp));
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10)).
+                    until(ExpectedConditions.presenceOfElementLocated(cookiesPolicyPopUp));
+            cookiesAcceptButton.click();
+            new WebDriverWait(driver, Duration.ofSeconds(10)).
+                    until(ExpectedConditions.invisibilityOfElementLocated(cookiesPolicyPopUp));
+        } catch (NoSuchElementException elementException) {
+            LOGGER.info("Cookies Notification is not shown");
+        }
     }
 
 }
