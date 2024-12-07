@@ -2,6 +2,7 @@ package org.github.guzov.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
@@ -17,7 +18,14 @@ public class DriverSingleton {
             switch (System.getProperty("browser"))
             {
                 case ("firefox"): driver = new FirefoxDriver();
-                default: driver = new ChromeDriver();
+                default: {
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless");
+                    options.addArguments("--window-size=1920,1080");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--no-sandbox");
+                    driver = new ChromeDriver(options);
+                }
             }
             driver.manage().window().maximize();
         }
