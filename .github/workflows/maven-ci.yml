@@ -15,4 +15,4 @@ jobs:
         with:
           java-version: '19'
           cache: maven
-    run: mvn clean test -Dbrowser=chrome -Denvironment=dev -DxmlFilePath=src\test\resources\testing-smoke.xml
+        run: mvn clean test -Dbrowser=chrome -Denvironment=dev -DxmlFilePath=src\test\resources\testing-smoke.xml
