@@ -38,6 +38,8 @@ public class GoogleCloudHomePage extends AbstractPage {
     {
         LOGGER.info("Search element displayed:" + searchIcon.isDisplayed());
         LOGGER.info("Search element enabled:" + searchIcon.isEnabled());
+        new WebDriverWait(driver, Duration.ofSeconds(10)).
+                until(ExpectedConditions.visibilityOfAllElements(searchIcon));
         searchIcon.click();
         searchIcon.sendKeys(searchItem);
         searchIcon.sendKeys(Keys.ENTER);
