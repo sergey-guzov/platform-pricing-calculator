@@ -20,10 +20,9 @@ public class DriverSingleton {
                 case ("firefox"): driver = new FirefoxDriver();
                 default: {
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless");
-                    options.addArguments("--window-size=1920,1080");
-                    options.addArguments("--disable-gpu");
-                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-extensions");
+                    options.addArguments("--disable-blink-features=AutomationControlled");
+                    options.addArguments("--disable-animations");
                     driver = new ChromeDriver(options);
                 }
             }
