@@ -38,7 +38,7 @@ public class GoogleCloudHomePage extends AbstractPage {
     {
         LOGGER.info("Search element displayed:" + searchIcon.isDisplayed());
         LOGGER.info("Search element enabled:" + searchIcon.isEnabled());
-        searchIcon.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchIcon);
         searchIcon.sendKeys(searchItem);
         searchIcon.sendKeys(Keys.ENTER);
         return new GoogleCloudSearchResultsPage(driver, searchItem);
