@@ -94,13 +94,16 @@ public class ComputeEngineCalculatorPage extends GoogleCloudPricingCalculatorPag
         scrollPageTo(gpuTypeDropBox);
         gpuTypeDropBox.click();
         selectOptionFromDropBox(gpuTypeDropBox, computeEngine.getGpuModel());
+        LOGGER.info("Select GPY type - `{}`", computeEngine.getGpuModel());
+
         gpuNumberDropBox.click();
         selectOptionFromDropBox(gpuNumberDropBox, computeEngine.getGpuNumber());
+        LOGGER.info("Set GPY number - `{}`", computeEngine.getGpuNumber());
+
         localSsdDropBox.click();
         selectOptionFromDropBox(localSsdDropBox, computeEngine.getLocalSSD());
-        LOGGER.info("Select GPY type - `{}`", computeEngine.getGpuModel());
-        LOGGER.info("Set GPY number - `{}`", computeEngine.getGpuNumber());
-        LOGGER.info("Set SSD number - `{}`", computeEngine.getLocalSSD());
+        LOGGER.info("Set LocalSSD number - `{}`", computeEngine.getLocalSSD());
+
         return this;
     }
 
