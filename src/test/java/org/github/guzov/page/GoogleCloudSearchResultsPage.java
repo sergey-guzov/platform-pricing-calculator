@@ -22,7 +22,7 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
     @FindBys(@FindBy(xpath = "//div[@class='gs-title']/a[@class='gs-title']"))
     private List<WebElement> searchResults;
 
-    private final By SEARCH_RESULTS_BOX = By.xpath("//*[contains(@class, 'gsc-resultsRoot gsc-tabData gsc-tabdActive')]");
+    private final By SEARCH_RESULTS_BOX = By.xpath("//*[contains(@class, 'gsc-results gsc-webResult')]");
     private String searchItem;
 
     public GoogleCloudSearchResultsPage (WebDriver driver, String searchItem)

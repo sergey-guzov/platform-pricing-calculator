@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -93,7 +94,20 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     protected void scrollPageTo (WebElement element)
     {
         Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
+        try
+        {
+            actions.moveToElement(element).perform();
+        }
+        catch (MoveTargetOutOfBoundsException e)
+        {
+            LOGGER.info(e);
+            js.executeScript(
+                    "const element = arguments[0];" +
+                            "const rect = element.getBoundingClientRect();" +
+                            "window.scrollBy({ top: rect.top + window.scrollY - (window.innerHeight / 2), behavior: 'smooth' });",
+                    element
+            );
+        }
         new WebDriverWait(driver, Duration.ofSeconds(2)).until(ExpectedConditions.visibilityOf(element));
     }
 

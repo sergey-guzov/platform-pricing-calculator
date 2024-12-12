@@ -22,7 +22,7 @@ public class DriverSingleton {
                     break;
                 default: {
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless", "--disable-gpu", "--disable-infobars", "--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "--window-size=1920,1080", "--remote-allow-origins=*");
+                    options.addArguments("--headless=new", "--disable-gpu", "--disable-infobars", "--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "--window-size=1920,1080", "--remote-allow-origins=*");
                     driver = new ChromeDriver(options);
                 }
             }

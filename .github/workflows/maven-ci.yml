@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Run Smoke Test
-        run: mvn clean test -Dbrowser=chrome -Denvironment=dev -DxmlFilePath="src\test\resources\testing-smoke.xml"
+        run: mvn clean test -Dbrowser=firefox -Denvironment=dev -DxmlFilePath="src\test\resources\testing-smoke.xml"
 
       - name: Upload Screenshots
         if: failure()  # Only upload artifacts if the job fails
