@@ -3,8 +3,10 @@ package org.github.guzov.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.github.guzov.driver.DriverSingleton;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -12,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -77,6 +80,26 @@ public class TestListener implements ITestListener {
                     + ".png"));
         } catch (IOException e) {
             LOGGER.error("Failed to save screenshot: " + e.getStackTrace());
+        }
+        getPageDom();
+    }
+
+    private void getPageDom ()
+    {
+        WebElement htmlElement = DriverSingleton.getDriver().findElement(By.tagName("html"));
+        String domStructure = htmlElement.getAttribute("outerHTML");
+        String filePath = "./target/dom/" + getCurrentTimeAsString() + ".html";
+
+        try {
+            File file = new File(filePath);
+            file.getParentFile().mkdirs();
+
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(domStructure);
+            }
+
+        } catch (IOException e) {
+            LOGGER.error("Failed to save DOM structure", e);
         }
     }
     private String getCurrentTimeAsString(){
