@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 
 public class DriverSingleton {
@@ -18,11 +19,13 @@ public class DriverSingleton {
             switch (System.getProperty("browser"))
             {
                 case ("firefox"):
+                    FirefoxOptions option = new FirefoxOptions();
+                    option.addArguments("-headless");
                     driver = new FirefoxDriver();
                     break;
                 default: {
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless=new", "--disable-gpu", "--disable-infobars", "--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage", "--window-size=1920,1080", "--remote-allow-origins=*");
+                    options.addArguments("--headless");
                     driver = new ChromeDriver(options);
                 }
             }
