@@ -22,6 +22,9 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
     @FindBys(@FindBy(xpath = "//div[@class='gs-title']/a[@class='gs-title']"))
     private List<WebElement> searchResults;
 
+    @FindBy(xpath = "//div/a[@href='https://cloud.google.com/products/calculator']")
+    private WebElement calculatorLink;
+
     private final By SEARCH_RESULTS_BOX = By.xpath("//*[contains(@class, 'gsc-results gsc-webResult')]");
     private String searchItem;
 
@@ -33,21 +36,10 @@ public class GoogleCloudSearchResultsPage extends AbstractPage {
 
     public GoogleCloudPricingCalculatorPage selectResult ()
     {
-        WebElement necessaryItem = null;
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(SEARCH_RESULTS_BOX));
-        for (WebElement searchResult: searchResults)
-        {
-            if (searchResult.getText().equals(searchItem))
-            {
-                necessaryItem = searchResult;
-                break;
-            }
-        }
-        if (necessaryItem == null)
-        {
-            throw new RuntimeException("No suitable result");
-        } else necessaryItem.click();
+                .until(ExpectedConditions.visibilityOf(calculatorLink));
+        calculatorLink.click();
+
         LOGGER.info("Result `{}` was found and clicked", searchItem);
         return new GoogleCloudPricingCalculatorPage(driver);
     }

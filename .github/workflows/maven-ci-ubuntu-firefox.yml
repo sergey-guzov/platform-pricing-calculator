@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - locators
 
 jobs:
   smoke-test:

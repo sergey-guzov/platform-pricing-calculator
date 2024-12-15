@@ -16,8 +16,11 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     private String language = "/?hl=ru";
 
-    @FindBy(xpath = "//input[@aria-label='Search']")
+    @FindBy(xpath = "//div[@class='YSM5S']")
     private WebElement searchIcon;
+
+    @FindBy(xpath = "//input[@type='text']")
+    private WebElement searchBar;
 
     @FindBy(xpath = "//button[@class='glue-cookie-notification-bar__accept']")
     private WebElement cookiesAcceptButton;
@@ -39,8 +42,11 @@ public class GoogleCloudHomePage extends AbstractPage {
         LOGGER.info("Search element displayed:" + searchIcon.isDisplayed());
         LOGGER.info("Search element enabled:" + searchIcon.isEnabled());
         //((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchIcon);
-        searchIcon.sendKeys(searchItem);
-        searchIcon.sendKeys(Keys.ENTER);
+        searchIcon.click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).
+                until(ExpectedConditions.visibilityOf(searchBar));
+        searchBar.sendKeys(searchItem);
+        searchBar.sendKeys(Keys.ENTER);
         return new GoogleCloudSearchResultsPage(driver, searchItem);
     }
 
