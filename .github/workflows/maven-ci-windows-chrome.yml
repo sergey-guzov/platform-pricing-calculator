@@ -1,4 +1,4 @@
-name: Maven Test CI
+name: Maven Test CI on Windows/Chrome
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   smoke-test:
     name: Smoke Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Run Smoke Test
-        run: mvn clean test -Dbrowser=firefox -Denvironment=dev -DxmlFilePath="src\test\resources\testing-smoke.xml"
+        run: mvn clean test -Dbrowser=chrome -Denvironment=staging -DxmlFilePath="src\test\resources\testing-smoke.xml"
 
       - name: Upload Screenshots
         if: failure()  # Only upload artifacts if the job fails
