@@ -39,21 +39,19 @@ public class GoogleCloudHomePage extends AbstractPage {
 
     public GoogleCloudSearchResultsPage searchFor (String searchItem)
     {
-        LOGGER.info("Search element displayed:" + searchIcon.isDisplayed());
-        LOGGER.info("Search element enabled:" + searchIcon.isEnabled());
-        //((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchIcon);
         searchIcon.click();
         new WebDriverWait(driver, Duration.ofSeconds(10)).
                 until(ExpectedConditions.visibilityOf(searchBar));
         searchBar.sendKeys(searchItem);
         searchBar.sendKeys(Keys.ENTER);
+        LOGGER.info("Search of `{}` ran", searchItem);
         return new GoogleCloudSearchResultsPage(driver, searchItem);
     }
 
     private void closeCookieNotification ()
     {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(10)).
+            new WebDriverWait(driver, Duration.ofSeconds(5)).
                     until(ExpectedConditions.presenceOfElementLocated(cookiesPolicyPopUp));
             cookiesAcceptButton.click();
             new WebDriverWait(driver, Duration.ofSeconds(10)).
